@@ -1,0 +1,202 @@
+[gd_scene load_steps=20 format=3 uid="uid://gunx2efdk7d2"]
+
+[ext_resource type="Texture2D" uid="uid://c02cctpyaek4n" path="res://assets/background.png" id="1_8ln24"]
+[ext_resource type="Script" uid="uid://rot0blev1ibn" path="res://scenes/main_menu.gd" id="1_rtw2f"]
+[ext_resource type="FontFile" uid="uid://dsdsw7axr2tds" path="res://assets/fonts/Kenney Mini Square.ttf" id="3_oa1go"]
+[ext_resource type="StyleBox" uid="uid://db6s1v6bg352u" path="res://scenes/main_buttons.tres" id="4_jk1qb"]
+[ext_resource type="Texture2D" uid="uid://cjj7oj205skwc" path="res://assets/pixel_chips.png" id="4_tbmy8"]
+[ext_resource type="StyleBox" uid="uid://b7mcobdps5rxj" path="res://scenes/buttons_pressed.tres" id="5_5dd4i"]
+[ext_resource type="Texture2D" uid="uid://x14smr7ynj5l" path="res://assets/dice_side6.png" id="5_8ln24"]
+[ext_resource type="Texture2D" uid="uid://so6ks04dsxpy" path="res://assets/man.png" id="5_jk1qb"]
+[ext_resource type="StyleBox" uid="uid://ok6rscd3y3m" path="res://scenes/button_hover.tres" id="6_jk1qb"]
+[ext_resource type="AudioStream" uid="uid://yt4laemgryab" path="res://assets/Sounds/788611__el_boss__ui-button-press.wav" id="10_5dd4i"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_rtw2f"]
+font = ExtResource("3_oa1go")
+font_size = 69
+
+[sub_resource type="Theme" id="Theme_tbmy8"]
+default_font = ExtResource("3_oa1go")
+default_font_size = 32
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5dd4i"]
+atlas = ExtResource("5_jk1qb")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lgwnu"]
+atlas = ExtResource("5_jk1qb")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_flqon"]
+atlas = ExtResource("5_jk1qb")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jk1qb"]
+atlas = ExtResource("5_jk1qb")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rcqid"]
+atlas = ExtResource("5_jk1qb")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1ajci"]
+atlas = ExtResource("5_jk1qb")
+region = Rect2(64, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rcqid"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5dd4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lgwnu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_flqon")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jk1qb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rcqid")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1ajci")
+}],
+"loop": true,
+"name": &"idle_cool",
+"speed": 5.0
+}]
+
+[node name="Main Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rtw2f")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(578, 325.99997)
+scale = Vector2(4.5625, 2.5937502)
+texture = ExtResource("1_8ln24")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 80.0
+offset_right = 112.0
+offset_bottom = 120.0
+grow_horizontal = 2
+text = "Pixel Gambler"
+label_settings = SubResource("LabelSettings_rtw2f")
+
+[node name="btnStart" type="Button" parent="."]
+texture_filter = 1
+layout_mode = 0
+offset_left = 472.0
+offset_top = 320.0
+offset_right = 680.0
+offset_bottom = 376.0
+theme = SubResource("Theme_tbmy8")
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("3_oa1go")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_jk1qb")
+theme_override_styles/pressed = ExtResource("5_5dd4i")
+theme_override_styles/hover = ExtResource("6_jk1qb")
+text = " Start Game "
+
+[node name="btnExit" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -48.0
+offset_top = -144.0
+offset_right = 40.0
+offset_bottom = -96.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_fonts/font = ExtResource("3_oa1go")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_jk1qb")
+theme_override_styles/pressed = ExtResource("5_5dd4i")
+theme_override_styles/hover = ExtResource("6_jk1qb")
+text = " Exit "
+
+[node name="btnOptions" type="Button" parent="."]
+layout_mode = 0
+offset_left = 504.0
+offset_top = 416.0
+offset_right = 652.0
+offset_bottom = 464.0
+theme_override_fonts/font = ExtResource("3_oa1go")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_jk1qb")
+theme_override_styles/pressed = ExtResource("5_5dd4i")
+theme_override_styles/hover = ExtResource("6_jk1qb")
+text = " Options "
+
+[node name="sprites" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="sprites"]
+position = Vector2(312.00003, 240)
+scale = Vector2(3.25, 2.75)
+texture = ExtResource("4_tbmy8")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Sprite2D2" type="Sprite2D" parent="sprites"]
+position = Vector2(344.00003, 320)
+scale = Vector2(3.25, 2.75)
+texture = ExtResource("4_tbmy8")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="Sprite2D3" type="Sprite2D" parent="sprites"]
+position = Vector2(384, 416)
+scale = Vector2(3.25, 2.75)
+texture = ExtResource("4_tbmy8")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="Sprite2D4" type="Sprite2D" parent="sprites"]
+position = Vector2(424, 512)
+scale = Vector2(3.25, 2.75)
+texture = ExtResource("4_tbmy8")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="sprites"]
+position = Vector2(856, 408)
+scale = Vector2(12, 10.8)
+sprite_frames = SubResource("SpriteFrames_rcqid")
+animation = &"idle_cool"
+autoplay = "idle"
+
+[node name="Sprite2D5" type="Sprite2D" parent="sprites"]
+position = Vector2(944.00006, 112.000015)
+scale = Vector2(5.75, 5.5)
+texture = ExtResource("5_8ln24")
+
+[node name="buttonClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_5dd4i")
+volume_db = 1.908
+
+[connection signal="pressed" from="btnStart" to="." method="_on_btn_start_pressed"]
+[connection signal="pressed" from="btnExit" to="." method="_on_btn_exit_pressed"]

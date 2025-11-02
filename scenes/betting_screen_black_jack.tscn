@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://b2c0p7q2r7bma"]
+
+[ext_resource type="Texture2D" uid="uid://c02cctpyaek4n" path="res://assets/background.png" id="1_3kt2n"]
+[ext_resource type="Script" uid="uid://c3imiwxgj5xuk" path="res://scripts/betting_screen_black_jack.gd" id="1_fo4mw"]
+[ext_resource type="LabelSettings" uid="uid://bfvl42gbhptkm" path="res://scenes/betting_screen_black_jack.tres" id="2_fo4mw"]
+[ext_resource type="FontFile" uid="uid://dsdsw7axr2tds" path="res://assets/fonts/Kenney Mini Square.ttf" id="2_w2shj"]
+[ext_resource type="StyleBox" uid="uid://db6s1v6bg352u" path="res://scenes/main_buttons.tres" id="5_5l7ua"]
+[ext_resource type="StyleBox" uid="uid://b7mcobdps5rxj" path="res://scenes/buttons_pressed.tres" id="6_i1f73"]
+[ext_resource type="StyleBox" uid="uid://ok6rscd3y3m" path="res://scenes/button_hover.tres" id="7_w8vxx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_btmq5"]
+font = ExtResource("2_w2shj")
+font_size = 22
+
+[node name="Betting_screen BlackJack" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fo4mw")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(576.49994, 324.49997)
+scale = Vector2(4.5429683, 2.5898435)
+texture = ExtResource("1_3kt2n")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -82.0
+offset_top = 106.0
+offset_right = 86.0
+offset_bottom = 146.0
+grow_horizontal = 2
+text = "Place Bet:"
+label_settings = ExtResource("2_fo4mw")
+
+[node name="btnBet" type="Button" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 432.0
+offset_right = 671.0
+offset_bottom = 480.0
+theme_override_fonts/font = ExtResource("2_w2shj")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("5_5l7ua")
+theme_override_styles/pressed = ExtResource("6_i1f73")
+theme_override_styles/hover = ExtResource("7_w8vxx")
+text = " Place Bet "
+
+[node name="lblError" type="Label" parent="."]
+layout_mode = 0
+offset_left = 772.0
+offset_top = 246.0
+offset_right = 1024.0
+offset_bottom = 286.0
+text = "Error Message"
+label_settings = SubResource("LabelSettings_btmq5")
+autowrap_mode = 2
+
+[node name="EditBet" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 476.0
+offset_top = 256.0
+offset_right = 679.0
+offset_bottom = 287.0
+theme_override_fonts/font = ExtResource("2_w2shj")
+placeholder_text = "Input betting amount.."
+
+[node name="btnBack" type="Button" parent="."]
+layout_mode = 0
+offset_left = 937.0
+offset_top = 575.0
+offset_right = 1041.0
+offset_bottom = 623.0
+theme_override_fonts/font = ExtResource("2_w2shj")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("5_5l7ua")
+theme_override_styles/pressed = ExtResource("6_i1f73")
+theme_override_styles/hover = ExtResource("7_w8vxx")
+text = " Back "
+
+[connection signal="pressed" from="btnBet" to="." method="_on_btn_bet_pressed"]
+[connection signal="pressed" from="btnBack" to="." method="_on_btn_back_pressed"]

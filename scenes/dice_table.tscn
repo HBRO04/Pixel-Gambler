@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://lv1xs3g1mnq0"]
+
+[ext_resource type="Script" uid="uid://bjkrxgev5vb4d" path="res://scripts/dice_table.gd" id="1_wld6s"]
+[ext_resource type="Texture2D" uid="uid://bhxiy44u650we" path="res://assets/objects.png" id="2_wy7wj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cmimx"]
+size = Vector2(49, 27)
+
+[node name="Dice_table" type="Area2D"]
+collision_layer = 5
+collision_mask = 2
+script = ExtResource("1_wld6s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_wy7wj")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 2.5)
+shape = SubResource("RectangleShape2D_cmimx")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

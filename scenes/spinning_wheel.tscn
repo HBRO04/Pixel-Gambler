@@ -1,0 +1,198 @@
+[gd_scene load_steps=17 format=3 uid="uid://dp7rctyupt38"]
+
+[ext_resource type="FontFile" uid="uid://dsdsw7axr2tds" path="res://assets/fonts/Kenney Mini Square.ttf" id="1_47rxl"]
+[ext_resource type="Script" uid="uid://ck5khtrh3g1wq" path="res://scripts/spinning_wheel.gd" id="1_xqj4p"]
+[ext_resource type="StyleBox" uid="uid://db6s1v6bg352u" path="res://scenes/main_buttons.tres" id="2_xqj4p"]
+[ext_resource type="StyleBox" uid="uid://b7mcobdps5rxj" path="res://scenes/buttons_pressed.tres" id="3_qdpr3"]
+[ext_resource type="StyleBox" uid="uid://ok6rscd3y3m" path="res://scenes/button_hover.tres" id="4_qrqfh"]
+[ext_resource type="Texture2D" uid="uid://bes0bsqbmoegr" path="res://assets/spinning_wheel.png" id="5_ylglt"]
+[ext_resource type="Texture2D" uid="uid://so6ks04dsxpy" path="res://assets/man.png" id="6_xj600"]
+[ext_resource type="LabelSettings" uid="uid://bfvl42gbhptkm" path="res://scenes/betting_screen_black_jack.tres" id="8_qdpr3"]
+[ext_resource type="AudioStream" uid="uid://bi0tpl18bre26" path="res://assets/Sounds/808132__designerschoice__gamecas-samsung-galaxy-smartphone-cu_spin-to-win-wheel_nicholas-judy_tdc.wav" id="9_qrqfh"]
+
+[sub_resource type="Animation" id="Animation_qrqfh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wheel:rotation")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_qdpr3"]
+resource_name = "Spin"
+length = 2.5
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Wheel:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.90000004, 1, 1.1, 1.2, 1.3000001, 1.4, 1.5, 1.6, 1.7, 1.8000001, 1.9, 2, 2.1000001, 2.2, 2.3, 2.4, 2.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.2617994, -0.5235988, -0.7853982, -1.0471976, -1.3089969, -1.5707964, -1.8325957, -2.0943952, -2.3561945, -2.6179938, -2.8797932, -3.1415927, -3.403392, -3.6651914, -3.9269907, -4.1887903, -4.4505897, -4.712389, -4.9741883, -5.2359877, -5.497787, -5.7595863, -6.021386, -6.2831855, -6.544985]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ylglt"]
+_data = {
+&"RESET": SubResource("Animation_qrqfh"),
+&"Spin": SubResource("Animation_qdpr3")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bi7bd"]
+atlas = ExtResource("6_xj600")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jaj7l"]
+atlas = ExtResource("6_xj600")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gv7w6"]
+atlas = ExtResource("6_xj600")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_arcfc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bi7bd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jaj7l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gv7w6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Spinning Wheel" type="Node2D" node_paths=PackedStringArray("lblerror")]
+script = ExtResource("1_xqj4p")
+lblerror = NodePath("lblError")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+z_index = -6
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.33535546, 0.43741482, 0.32284176, 1)
+
+[node name="Top" type="Sprite2D" parent="."]
+z_index = 2
+position = Vector2(776, 328.99997)
+scale = Vector2(20.25, 20.25)
+texture = ExtResource("5_ylglt")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="Wheel" type="Sprite2D" parent="."]
+position = Vector2(779, 323.5)
+scale = Vector2(20.249998, 20.09375)
+texture = ExtResource("5_ylglt")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_ylglt")
+}
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+position = Vector2(298, 383.00003)
+scale = Vector2(18.53125, 15.625)
+sprite_frames = SubResource("SpriteFrames_arcfc")
+autoplay = "default"
+frame_progress = 0.5271448
+
+[node name="btnBack" type="Button" parent="."]
+process_mode = 3
+top_level = true
+texture_filter = 1
+offset_left = 43.19
+offset_top = 584.0
+offset_right = 139.19002
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("1_47rxl")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_xqj4p")
+theme_override_styles/pressed = ExtResource("3_qdpr3")
+theme_override_styles/hover = ExtResource("4_qrqfh")
+text = " back "
+
+[node name="btnSpin" type="Button" parent="."]
+process_mode = 3
+top_level = true
+texture_filter = 1
+offset_left = 1026.0
+offset_top = 584.0
+offset_right = 1110.0
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("1_47rxl")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_xqj4p")
+theme_override_styles/pressed = ExtResource("3_qdpr3")
+theme_override_styles/hover = ExtResource("4_qrqfh")
+text = " Spin "
+
+[node name="lblError" type="Label" parent="."]
+z_index = 2
+offset_left = 102.0
+offset_top = 151.0
+offset_right = 426.0
+offset_bottom = 241.0
+label_settings = ExtResource("8_qdpr3")
+autowrap_mode = 2
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+
+[node name="power_btn" type="HSlider" parent="CanvasLayer2"]
+offset_left = 132.0
+offset_top = 101.0
+offset_right = 413.0
+offset_bottom = 162.0
+rounded = true
+
+[node name="Button" type="Button" parent="CanvasLayer2"]
+offset_left = 971.0
+offset_top = 584.0
+offset_right = 1131.0
+offset_bottom = 624.0
+theme_override_fonts/font = ExtResource("1_47rxl")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("2_xqj4p")
+theme_override_styles/pressed = ExtResource("3_qdpr3")
+theme_override_styles/hover = ExtResource("4_qrqfh")
+text = " continue "
+
+[node name="lblPower" type="Label" parent="CanvasLayer2"]
+offset_left = 429.0
+offset_top = 113.0
+offset_right = 469.0
+offset_bottom = 153.0
+label_settings = ExtResource("8_qdpr3")
+
+[node name="WheelSpinning" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_qrqfh")
+volume_db = 2.0
+
+[connection signal="pressed" from="btnBack" to="." method="_on_btn_back_pressed"]
+[connection signal="pressed" from="btnSpin" to="." method="_on_btn_spin_pressed"]
+[connection signal="pressed" from="CanvasLayer2/Button" to="." method="_on_button_pressed"]

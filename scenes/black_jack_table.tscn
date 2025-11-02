@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b60b8h25gqe26"]
+
+[ext_resource type="Texture2D" uid="uid://bhxiy44u650we" path="res://assets/objects.png" id="1_do1ck"]
+[ext_resource type="Script" uid="uid://dy604n07vi7w8" path="res://scenes/black_jack_table.gd" id="1_o2tv0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2tv0"]
+size = Vector2(66, 42)
+
+[node name="BlackJackTable" type="Area2D"]
+collision_layer = 5
+collision_mask = 7
+script = ExtResource("1_o2tv0")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_do1ck")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 8)
+shape = SubResource("RectangleShape2D_o2tv0")
+
+[connection signal="body_entered" from="." to="." method="on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

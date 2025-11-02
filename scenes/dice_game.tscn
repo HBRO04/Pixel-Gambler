@@ -1,0 +1,148 @@
+[gd_scene load_steps=12 format=3 uid="uid://bphpk2n3gtlm3"]
+
+[ext_resource type="Texture2D" uid="uid://bhxiy44u650we" path="res://assets/objects.png" id="1_67jjc"]
+[ext_resource type="Script" uid="uid://djqpwuipcslg2" path="res://scenes/dice_game.gd" id="1_a8j7o"]
+[ext_resource type="FontFile" uid="uid://dsdsw7axr2tds" path="res://assets/fonts/Kenney Mini Square.ttf" id="3_8xsoh"]
+[ext_resource type="StyleBox" uid="uid://db6s1v6bg352u" path="res://scenes/main_buttons.tres" id="4_sflpo"]
+[ext_resource type="PackedScene" uid="uid://ccgfn6w7j7w86" path="res://scenes/dice.tscn" id="4_sidal"]
+[ext_resource type="Texture2D" uid="uid://bb0ewpy2nvexv" path="res://assets/dice.png" id="5_8xsoh"]
+[ext_resource type="StyleBox" uid="uid://b7mcobdps5rxj" path="res://scenes/buttons_pressed.tres" id="5_yc3cm"]
+[ext_resource type="StyleBox" uid="uid://ok6rscd3y3m" path="res://scenes/button_hover.tres" id="6_orquv"]
+[ext_resource type="LabelSettings" uid="uid://bfvl42gbhptkm" path="res://scenes/betting_screen_black_jack.tres" id="6_sidal"]
+[ext_resource type="AudioStream" uid="uid://bif4c0id37tls" path="res://assets/Sounds/808134__designerschoice__gamemisc-blue-snowball-microphone-cu_dice-rolls-on-wooden-surface_nicholas-judy_tdc.wav" id="10_yc3cm"]
+[ext_resource type="AudioStream" uid="uid://dhtyy3sfbebcl" path="res://assets/Sounds/765064__getwecked__casino-ambiance.wav" id="11_orquv"]
+
+[node name="Dice_table" type="Node2D" node_paths=PackedStringArray("dice", "lblerror", "listbx")]
+script = ExtResource("1_a8j7o")
+dice = NodePath("Dice")
+lblerror = NodePath("lblerror")
+listbx = NodePath("Choice")
+
+[node name="Background_table" type="Sprite2D" parent="."]
+z_index = -3
+position = Vector2(571.00006, 259)
+scale = Vector2(36.34375, 43.499996)
+texture = ExtResource("1_67jjc")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="Button" type="Button" parent="."]
+offset_left = 863.0
+offset_top = 509.0
+offset_right = 1035.0
+offset_bottom = 557.0
+theme_override_fonts/font = ExtResource("3_8xsoh")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_sflpo")
+theme_override_styles/pressed = ExtResource("5_yc3cm")
+theme_override_styles/hover = ExtResource("6_orquv")
+text = " Roll Dice "
+
+[node name="Dice" parent="." instance=ExtResource("4_sidal")]
+z_index = 2
+texture_filter = 1
+position = Vector2(218.496, 336.132)
+scale = Vector2(3.4375, 3.59375)
+
+[node name="Diceside1" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(218.496, 336.13202)
+scale = Vector2(3.3439996, 3.6957514)
+texture = ExtResource("5_8xsoh")
+region_enabled = true
+region_rect = Rect2(64, 0, 32, 32)
+
+[node name="Diceside2" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(218.496, 336.13202)
+scale = Vector2(3.3439996, 3.6957514)
+texture = ExtResource("5_8xsoh")
+region_enabled = true
+region_rect = Rect2(0, 32, 32, 32)
+
+[node name="Diceside3" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(218.496, 336.13202)
+scale = Vector2(3.3439996, 3.6957514)
+texture = ExtResource("5_8xsoh")
+region_enabled = true
+region_rect = Rect2(32, 32, 32, 32)
+
+[node name="Diceside4" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(218.496, 336.13202)
+scale = Vector2(3.3439996, 3.6957514)
+texture = ExtResource("5_8xsoh")
+region_enabled = true
+region_rect = Rect2(64, 32, 32, 32)
+
+[node name="Diceside5" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(218.496, 336.13202)
+scale = Vector2(3.3439996, 3.6957514)
+texture = ExtResource("5_8xsoh")
+region_enabled = true
+region_rect = Rect2(0, 64, 32, 32)
+
+[node name="Diceside6" type="Sprite2D" parent="."]
+z_index = 10
+position = Vector2(218.496, 336.13202)
+scale = Vector2(3.3439996, 3.6957514)
+texture = ExtResource("5_8xsoh")
+region_enabled = true
+region_rect = Rect2(32, 64, 32, 32)
+
+[node name="Choice" type="ItemList" parent="."]
+offset_left = 859.0
+offset_top = 340.0
+offset_right = 1019.0
+offset_bottom = 467.0
+theme_override_fonts/font = ExtResource("3_8xsoh")
+theme_override_font_sizes/font_size = 32
+allow_reselect = true
+auto_width = true
+auto_height = true
+item_count = 2
+icon_mode = 0
+item_0/text = "Higher"
+item_1/text = "Lower"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 52.0
+offset_top = 130.0
+offset_right = 1092.0
+offset_bottom = 187.0
+text = " Choose if the dice will be rolled higer or lower than last roll"
+label_settings = ExtResource("6_sidal")
+autowrap_mode = 2
+
+[node name="lblerror" type="Label" parent="."]
+offset_left = 542.0
+offset_top = 331.0
+offset_right = 582.0
+offset_bottom = 354.0
+label_settings = ExtResource("6_sidal")
+autowrap_mode = 2
+
+[node name="Button2" type="Button" parent="."]
+offset_left = 140.0
+offset_top = 514.0
+offset_right = 194.0
+offset_bottom = 545.0
+theme_override_fonts/font = ExtResource("3_8xsoh")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("4_sflpo")
+theme_override_styles/pressed = ExtResource("5_yc3cm")
+theme_override_styles/hover = ExtResource("6_orquv")
+text = " Back "
+
+[node name="DiceSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_yc3cm")
+volume_db = 2.0
+
+[node name="BackgroundAmbiance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_orquv")
+volume_db = 2.0
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="Button2" to="." method="_on_back_button_pressed"]

@@ -1,0 +1,84 @@
+[gd_scene load_steps=10 format=3 uid="uid://eyrnf4fddcp1"]
+
+[ext_resource type="Script" uid="uid://d1opnc4khp1c3" path="res://scenes/hud.gd" id="1_5ysmq"]
+[ext_resource type="LabelSettings" uid="uid://bfvl42gbhptkm" path="res://scenes/betting_screen_black_jack.tres" id="1_oo0fn"]
+[ext_resource type="Texture2D" uid="uid://cjj7oj205skwc" path="res://assets/pixel_chips.png" id="2_5ysmq"]
+[ext_resource type="Texture2D" uid="uid://b2pea2hxja34u" path="res://assets/buttons.png" id="4_uo2fv"]
+[ext_resource type="FontFile" uid="uid://dsdsw7axr2tds" path="res://assets/fonts/Kenney Mini Square.ttf" id="5_047uy"]
+[ext_resource type="AudioStream" uid="uid://yt4laemgryab" path="res://assets/Sounds/788611__el_boss__ui-button-press.wav" id="6_047uy"]
+[ext_resource type="AudioStream" uid="uid://bvs2u6aqr0ew0" path="res://assets/Sounds/795404__robinhood76__13224-coin-slot-load.wav" id="7_5pdws"]
+[ext_resource type="AudioStream" uid="uid://dhtyy3sfbebcl" path="res://assets/Sounds/765064__getwecked__casino-ambiance.wav" id="8_hd3ao"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_5pdws"]
+font = ExtResource("5_047uy")
+font_size = 32
+font_color = Color(0.0018410678, 0.0018410682, 0.0018410678, 1)
+
+[node name="Hud" type="Control" node_paths=PackedStringArray("lblamount", "lblhint", "lblintereact", "textrec") groups=["hud"]]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1154.0
+offset_bottom = 651.0
+script = ExtResource("1_5ysmq")
+lblamount = NodePath("CanvasLayer/lblAmount")
+lblhint = NodePath("CanvasLayer/Label")
+lblintereact = NodePath("CanvasLayer/lblInteract")
+textrec = NodePath("CanvasLayer/TextureRect")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+offset_left = 9.0
+offset_top = 17.0
+offset_right = 73.0
+offset_bottom = 81.0
+texture = ExtResource("2_5ysmq")
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 71.0
+offset_top = 8.0
+offset_right = 247.0
+offset_bottom = 48.0
+text = " Currency:"
+label_settings = ExtResource("1_oo0fn")
+
+[node name="lblAmount" type="Label" parent="CanvasLayer"]
+offset_left = 93.0
+offset_top = 43.0
+offset_right = 213.0
+offset_bottom = 83.0
+text = "Amount"
+label_settings = ExtResource("1_oo0fn")
+
+[node name="lblInteract" type="Label" parent="CanvasLayer"]
+offset_left = 303.0
+offset_top = 552.0
+offset_right = 919.0
+offset_bottom = 593.0
+text = "Press  space  to interact with activity"
+label_settings = ExtResource("1_oo0fn")
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(467, 570)
+scale = Vector2(4.0312495, 2.6249995)
+texture = ExtResource("4_uo2fv")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 447.0
+offset_top = 551.0
+offset_right = 555.0
+offset_bottom = 591.0
+text = " E"
+label_settings = SubResource("LabelSettings_5pdws")
+
+[node name="buttonClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_047uy")
+volume_db = 2.0
+
+[node name="coinSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_5pdws")
+volume_db = 2.0
+
+[node name="casinoAmbiance" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_hd3ao")
+volume_db = 2.0

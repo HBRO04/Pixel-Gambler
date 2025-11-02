@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://yu55lkt134xh"]
+
+[ext_resource type="Script" uid="uid://valvnev0kvdt" path="res://scripts/slot_machines.gd" id="1_ognth"]
+[ext_resource type="Texture2D" uid="uid://bkuxcs126mgd3" path="res://assets/Pixel_slot_machines.png" id="2_05tpi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hwfyd"]
+size = Vector2(32, 56)
+
+[node name="slot_machines" type="Area2D"]
+collision_layer = 5
+collision_mask = 2
+script = ExtResource("1_ognth")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_05tpi")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_hwfyd")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

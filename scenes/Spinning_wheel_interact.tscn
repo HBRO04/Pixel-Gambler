@@ -1,0 +1,39 @@
+[gd_scene load_steps=4 format=3 uid="uid://crgl2vx3m7eau"]
+
+[ext_resource type="Texture2D" uid="uid://bes0bsqbmoegr" path="res://assets/spinning_wheel.png" id="1_bsy7i"]
+[ext_resource type="Script" uid="uid://by8caagl1e88l" path="res://scripts/spinning_wheel_interact.gd" id="1_pnpq2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pnpq2"]
+size = Vector2(102.26462, 120.52588)
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(0.74, 0.74)
+collision_layer = 5
+collision_mask = 2
+script = ExtResource("1_pnpq2")
+
+[node name="top" type="Sprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+position = Vector2(561.99994, 259.99997)
+scale = Vector2(0.74, 0.74)
+texture = ExtResource("1_bsy7i")
+region_enabled = true
+region_rect = Rect2(32, 0, 32, 32)
+
+[node name="Wheel" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(563.5, 260.5)
+scale = Vector2(0.74, 0.74)
+texture = ExtResource("1_bsy7i")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 1
+position = Vector2(563.51355, 262.1622)
+scale = Vector2(0.74000007, 0.74000007)
+shape = SubResource("RectangleShape2D_pnpq2")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

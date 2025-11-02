@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://23fj0o57dyki"]
+
+[ext_resource type="Script" uid="uid://clvhdpvpj3sfq" path="res://scripts/transition_screen.gd" id="1_12c8c"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jweab"]
+texture_filter = 1
+
+[sub_resource type="Animation" id="Animation_jrk67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.15294118, 0.15294118, 0.15294118, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_qj1lb"]
+resource_name = "fade_to_empty"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.11858138, 0.11858138, 0.11858138, 1), Color(0.15294118, 0.15294118, 0.15294118, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_8adi8"]
+resource_name = "fade_to_black"
+length = 0.5
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.099999994, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0.15294118, 0.15294118, 0.15294118, 0), Color(0.11858138, 0.11858138, 0.11858138, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vfryg"]
+_data = {
+&"RESET": SubResource("Animation_jrk67"),
+&"fade_to_black": SubResource("Animation_8adi8"),
+&"fade_to_empty": SubResource("Animation_qj1lb")
+}
+
+[node name="Transition_screen" type="CanvasLayer" node_paths=PackedStringArray("textrec", "animationPlayer")]
+script = ExtResource("1_12c8c")
+textrec = NodePath("TextureRect")
+animationPlayer = NodePath("AnimationPlayer")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0.15294118, 0.15294118, 0.15294118, 0)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_jweab")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_vfryg")
+}

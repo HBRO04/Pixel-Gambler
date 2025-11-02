@@ -1,0 +1,181 @@
+[gd_scene load_steps=14 format=3 uid="uid://cre1tys2jix18"]
+
+[ext_resource type="Shader" uid="uid://bycnopmdtspt" path="res://pauseMenu.gdshader" id="1_7l7mv"]
+[ext_resource type="Script" uid="uid://ndal6gn3jmod" path="res://scenes/pause_menu.gd" id="1_v4r4p"]
+[ext_resource type="FontFile" uid="uid://dsdsw7axr2tds" path="res://assets/fonts/Kenney Mini Square.ttf" id="2_v4r4p"]
+[ext_resource type="StyleBox" uid="uid://db6s1v6bg352u" path="res://scenes/main_buttons.tres" id="3_1s2dm"]
+[ext_resource type="Texture2D" uid="uid://dptm2n24jv84c" path="res://assets/paused_pressed.png" id="3_88e76"]
+[ext_resource type="StyleBox" uid="uid://b7mcobdps5rxj" path="res://scenes/buttons_pressed.tres" id="4_88e76"]
+[ext_resource type="StyleBox" uid="uid://ok6rscd3y3m" path="res://scenes/button_hover.tres" id="5_knqa7"]
+[ext_resource type="Texture2D" uid="uid://0gvbypfwj0dk" path="res://assets/pausebtn.png" id="7_1s2dm"]
+[ext_resource type="AudioStream" uid="uid://yt4laemgryab" path="res://assets/Sounds/788611__el_boss__ui-button-press.wav" id="9_knqa7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_71k7c"]
+shader = ExtResource("1_7l7mv")
+shader_parameter/lod = 0.0
+
+[sub_resource type="Animation" id="Animation_88e76"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_1s2dm"]
+resource_name = "blur"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:material:shader_parameter/lod")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.800000038]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_knqa7"]
+_data = {
+&"RESET": SubResource("Animation_88e76"),
+&"blur": SubResource("Animation_1s2dm")
+}
+
+[node name="PauseMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v4r4p")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+process_mode = 3
+top_level = true
+z_index = 1
+texture_filter = 1
+layout_mode = 0
+offset_left = 1060.0
+offset_top = 2.0
+offset_right = 1138.0
+offset_bottom = 82.0
+texture_normal = ExtResource("7_1s2dm")
+texture_pressed = ExtResource("3_88e76")
+stretch_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_71k7c")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -213.0
+offset_top = -185.0
+offset_right = 209.0
+offset_bottom = 85.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -144.0
+offset_top = -110.0
+offset_right = 144.0
+offset_bottom = 146.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 50
+
+[node name="btnResume" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v4r4p")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("3_1s2dm")
+theme_override_styles/pressed = ExtResource("4_88e76")
+theme_override_styles/hover = ExtResource("5_knqa7")
+text = " Resume "
+
+[node name="btnRestart" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v4r4p")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("3_1s2dm")
+theme_override_styles/pressed = ExtResource("4_88e76")
+theme_override_styles/hover = ExtResource("5_knqa7")
+text = " Restart "
+
+[node name="btnQuit" type="Button" parent="Panel/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_v4r4p")
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = ExtResource("3_1s2dm")
+theme_override_styles/pressed = ExtResource("4_88e76")
+theme_override_styles/hover = ExtResource("5_knqa7")
+text = " Quit to main menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_knqa7")
+}
+
+[node name="buttonClickSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_knqa7")
+volume_db = 2.0
+
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnResume" to="." method="_on_btn_resume_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnRestart" to="." method="_on_btn_restart_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/btnQuit" to="." method="_on_btn_quit_pressed"]
